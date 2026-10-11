@@ -1,0 +1,16 @@
+
+entity FULL_Adder is
+ Port ( A : in std_logic ;
+        B: in std_logic ;
+        C : in std_logic ;
+        sum : out std_logic;
+        carry : out std_logic);
+end FULL_Adder;
+
+architecture Dataflow of FULL_Adder is
+
+begin
+   sum <= A Xor B xor c ;
+   carry <= (A and B) or (B and C) or (A and C);
+
+end Dataflow;
