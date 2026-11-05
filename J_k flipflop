@@ -1,0 +1,31 @@
+-- 
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- imp thing for the sequencial ckt is that it must depend on the previous state 
+entity J_K_flipflop is
+ Port ( j : in std_logic ;
+        k : in std_logic ;        
+        clk : in std_logic ;
+        y : out std_logic
+ );
+end J_K_flipflop;
+
+architecture Dataflow of J_K_flipflop is
+   -- we are given the initial value to the q_req which is 0 as we do in the DSD , we are just making the assumption 
+  signal q_reg : std_logic := '0' ;  -- we are using this to use the previous state for the current state 
+  
+begin
+    process(clk) begin 
+    if  falling_edge(clk) then 
+      if j = '1' and k ='1' then
+        q_reg <= not q_reg ; -- the toggle condition 
+      else 
+         q_reg <= (j and (not q_reg)) or ((not k) and q_reg)  ;
+       end if ;
+       end if ;
+     end process ; 
+       y <= q_reg ;
+        
+end Dataflow;
